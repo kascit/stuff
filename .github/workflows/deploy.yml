@@ -1,0 +1,112 @@
+name: Deploy Showcase and Nested Projects
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository and Submodules
+        uses: actions/checkout@v6.0.2
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6.3.0
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Build Main Showcase (stuff)
+        run: |
+          # Use _site as the isolated assembly directory to avoid naming collisions
+          mkdir -p _site 
+
+          if [ -f "package.json" ]; then
+            echo "Building root Node project..."
+            npm ci
+            npm run build
+            
+            # Smart detect root output directory
+            if [ -d "dist" ]; then ROOT_OUT="dist"
+            elif [ -d "build" ]; then ROOT_OUT="build"
+            elif [ -d "out" ]; then ROOT_OUT="out"
+            elif [ -d "public" ]; then ROOT_OUT="public"
+            else
+              echo "Root build failed or output directory unknown."
+              exit 1
+            fi
+            
+            cp -r "$ROOT_OUT/"* _site/
+          else
+            echo "No package.json found in root. Copying static files."
+            # Exclude metadata, submodules, and the assembly folder itself
+            rsync -av --exclude='_site' --exclude='.git' --exclude='node_modules' ./* _site/ 2>/dev/null || : 
+          fi
+
+      - name: Build and Consolidate Submodules
+        run: |
+          if [ ! -f ".gitmodules" ]; then
+            echo "No .gitmodules file found. Skipping submodule build."
+            exit 0
+          fi
+
+          # Extract all submodule paths dynamically
+          SUBMODULES=$(git config --file .gitmodules --get-regexp path | awk '{ print $2 }')
+
+          for project in $SUBMODULES; do
+            if [ -d "$project" ]; then
+              echo "Processing submodule: $project"
+              mkdir -p "_site/$project"
+              
+              if [ -f "$project/package.json" ]; then
+                echo "Building Node project in $project..."
+                cd "$project"
+                npm ci
+                npm run build
+                cd ..
+                
+                # Smart detect submodule output directory
+                if [ -d "$project/dist" ]; then TARGET_DIR="dist"
+                elif [ -d "$project/build" ]; then TARGET_DIR="build"
+                elif [ -d "$project/out" ]; then TARGET_DIR="out"
+                elif [ -d "$project/public" ]; then TARGET_DIR="public"
+                else
+                  echo "Build failed or output directory unknown for $project."
+                  exit 1
+                fi
+                
+                cp -r "$project/$TARGET_DIR/"* "_site/$project"/
+              else
+                echo "Copying static files for $project..."
+                rsync -av --exclude='.git' "$project/" "_site/$project/"
+              fi
+            fi
+          done
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v6.0.0
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v4.0.0
+        with:
+          path: './_site' # Pointed to the new isolated assembly directory
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5.0.0
