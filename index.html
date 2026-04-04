@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stuff — dhanur.me</title>
+    <!-- Required for FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <!-- 1. The Configuration Object -->
+    <script>
+    window.SiteNavConfig = {
+        mode: "navbar",
+        nav: [
+            { name: "Home", url: "https://dhanur.me/", icon: "fa-solid fa-house" }
+        ],
+        sidebarNav: [],
+        activePath: window.location.pathname,
+        badge: { text: "STUFF", class: "badge-primary" },
+        showSearch: false,
+        showAppsGrid: true,
+        showThemeToggle: true
+    };
+    </script>
+
+    <!-- 2. The Abyssal Integration Script -->
+    <script type="module" src="https://dhanur.me/js/shell.js"></script>
+</head>
+<body>
+    <main class="w-full max-w-7xl mx-auto p-4 lg:p-8">
+        <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight mb-6 mt-14">My Stuff</h1>
+        <p class="text-lg text-base-content/85 mb-8">A collection of random creations, microservices, and experiments.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Calculator App -->
+            <a href="/stuff/calculator" class="dui-surface transition-transform hover:-translate-y-1 block no-underline text-inherit">
+                <div class="dui-surface-body flex flex-col gap-2">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="flex items-center justify-center w-10 h-10 rounded-xl bg-accent/10 border border-accent/20 text-accent">
+                            <i class="fa-solid fa-calculator text-xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-base font-bold text-base-content m-0">Calculator</h2>
+                            <span class="text-[10px] uppercase tracking-widest font-bold text-base-content/40">TOOL</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-base-content/60 m-0">A sleek glassmorphism calculator app.</p>
+                </div>
+            </a>
+
+            <!-- Weather App -->
+            <a href="/stuff/weather" class="dui-surface transition-transform hover:-translate-y-1 block no-underline text-inherit">
+                <div class="dui-surface-body flex flex-col gap-2">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="flex items-center justify-center w-10 h-10 rounded-xl bg-info/10 border border-info/20 text-info">
+                            <i class="fa-solid fa-cloud-sun text-xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-base font-bold text-base-content m-0">Weather</h2>
+                            <span class="text-[10px] uppercase tracking-widest font-bold text-base-content/40">INFO</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-base-content/60 m-0">Live weather metrics mapped to your location.</p>
+                </div>
+            </a>
+        </div>
+    </main>
+</body>
+</html>

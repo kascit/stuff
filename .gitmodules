@@ -1,0 +1,6 @@
+[submodule "calculator"]
+	path = calculator
+	url = https://github.com/kascit/calculator.git
+[submodule "weather"]
+	path = weather
+	url = https://github.com/kascit/weather.git
