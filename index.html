@@ -1,598 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stuff — Developer Micro-Tools, Web Toys & Experiments | dhanur.me</title>
-    <meta name="description" content="A curated playground of interactive developer utilities, calculators, encoders, and web experiments across the dhanur.me platform ecosystem." />
-    <link rel="canonical" href="https://dhanur.me/stuff/" />
-    <link rel="icon" href="https://raw.githubusercontent.com/kascit/kascit.github.io/raw-mirror/icons/favicon.svg" type="image/svg+xml" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://dhanur.me/stuff/" />
-    <meta property="og:title" content="Stuff — Developer Micro-Tools, Web Toys & Experiments | dhanur.me" />
-    <meta property="og:description" content="A curated playground of interactive developer utilities, calculators, encoders, and web experiments across the dhanur.me platform ecosystem." />
-    <meta property="og:image" content="https://raw.githubusercontent.com/kascit/kascit.github.io/raw-mirror/images/branding/logo-light.png" />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Stuff — Developer Micro-Tools, Web Toys & Experiments | dhanur.me" />
-    <meta name="twitter:description" content="A curated playground of interactive developer utilities, calculators, encoders, and web experiments across the dhanur.me platform ecosystem." />
-
-    <!-- Direct Core Styling -->
+    <title>Stuff — dhanur.me</title>
+    <meta name="description" content="A curated collection of personal utility tools, interactive experiments, and micro-applications by Dhanur." />
+    <link rel="icon" type="image/x-icon" href="https://dhanur.me/favicon.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="https://dhanur.me/css/dui.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-    <!-- 1. The Configuration Object -->
+    
     <script>
     window.SiteNavConfig = {
         mode: "navbar",
         nav: [
-            { name: "Home", url: "https://dhanur.me/", icon: "fa-solid fa-house" },
-            { name: "Blog", url: "https://dhanur.me/blog/", icon: "fa-solid fa-newspaper" },
-            { name: "Projects", url: "https://dhanur.me/projects/", icon: "fa-solid fa-code-branch" }
+            { name: "Home", url: "https://dhanur.me/", icon: "fa-solid fa-house" }
         ],
-        sidebarNav: [],
         activePath: "/stuff/",
         badge: { text: "STUFF", class: "badge-primary" },
         showSearch: false,
         showAppsGrid: true,
-        showThemeToggle: true,
-        showAccountButton: true,
-        enablePwa: false,
-        favicon: false
+        showThemeToggle: true
     };
     </script>
-
-    <!-- 2. Shell Integration Script -->
     <script src="https://dhanur.me/js/shell.min.js" defer></script>
 </head>
-<body class="min-h-screen bg-base-100 text-base-content antialiased pt-20">
-    <!-- Canonical Topbar Navbar -->
-    <div class="navbar site-topbar fixed top-0 left-0 right-0 z-50 h-16 border-b border-base-content/10 bg-base-100/80 backdrop-blur-md">
-        <div class="flex-none lg:hidden">
-            <button id="shell-mobile-toggle" type="button" aria-label="Open menu" class="btn btn-ghost btn-circle btn-sm">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-            </button>
-        </div>
-        <div class="flex-1 flex justify-center items-center lg:flex lg:justify-start">
-            <a href="https://dhanur.me/" class="btn btn-ghost hover:bg-transparent hover:border-transparent normal-case text-xl font-bold text-base-content logo-firefly site-logo-link">
-                <div class="relative h-18 flex items-center">
-                    <picture>
-                        <img src="https://raw.githubusercontent.com/kascit/kascit.github.io/raw-mirror/images/branding/logo-light.png" alt="~/dhanur" class="h-18 w-auto p-[15px] logo-dark" sizes="200px" />
-                    </picture>
-                    <picture class="absolute inset-0 flex items-center">
-                        <img src="https://raw.githubusercontent.com/kascit/kascit.github.io/raw-mirror/images/branding/logo-dark.png" alt="~/dhanur" class="h-18 w-auto p-[15px] logo-light" sizes="200px" />
-                    </picture>
-                </div>
-            </a>
-        </div>
-        <div class="flex-none hidden lg:flex">
-            <ul class="menu menu-horizontal px-1 items-center">
-                <li data-nav-chrome="apps" class="ml-1">
-                    <div class="relative p-0" data-dropdown="apps">
-                        <div tabindex="0" role="button" class="btn btn-ghost btn-square tooltip tooltip-bottom" data-tooltip-label="Apps" aria-label="Apps">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
-                        </div>
-                        <div class="dropdown-panel z-50 mt-2 p-4 bg-base-100 border border-base-content/10 rounded-box w-64 right-0 mr-2 md:mr-4">
-                            <div class="grid grid-cols-3 gap-2" data-app-menu-grid="desktop">
-                                <div class="col-span-3 flex justify-center py-4 opacity-50"><span class="loading loading-spinner loading-sm"></span></div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li data-nav-chrome="account" class="ml-1">
-                    <div class="relative p-0" data-dropdown="account">
-                        <div tabindex="0" role="button" class="btn btn-ghost btn-circle tooltip tooltip-bottom" data-tooltip-label="Account" aria-label="Account">
-                            <div data-auth="nav-guest-avatar" class="w-9 h-9 rounded-full bg-base-300 flex items-center justify-center">
-                                <i class="fa-solid fa-user text-base-content/50 text-sm"></i>
-                            </div>
-                        </div>
-                        <div class="dropdown-panel z-50 mt-2 bg-base-100 border border-base-content/10 rounded-box w-64 right-0 mr-2 md:mr-4 overflow-hidden">
-                            <div class="px-3 pt-3 pb-2 border-b border-base-content/10 cursor-default select-none">
-                                <div class="font-semibold text-sm">Ecosystem Account</div>
-                                <div class="text-xs opacity-60">Sign in for cross-app synchronization</div>
-                            </div>
-                            <ul class="menu p-2">
-                                <li data-nav-chrome="theme">
-                                    <div class="flex items-center gap-2.5 px-2.5 py-2">
-                                        <i class="fa-solid fa-circle-half-stroke w-4 text-center opacity-60"></i>
-                                        <div id="theme-toggle" class="theme-switcher w-full bg-base-300/70 text-xs font-medium">
-                                            <button data-theme-mode="light" class="theme-switcher-btn rounded-md px-2 py-1.5"><i class="fa-solid fa-sun mr-1"></i>Light</button>
-                                            <button data-theme-mode="dark" class="theme-switcher-btn rounded-md px-2 py-1.5"><i class="fa-solid fa-moon mr-1"></i>Dark</button>
-                                            <button data-theme-mode="auto" class="theme-switcher-btn rounded-md px-2 py-1.5"><i class="fa-solid fa-circle-half-stroke mr-1"></i>Auto</button>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li><a class="flex items-center gap-3" href="https://auth.dhanur.me/"><i class="fa-solid fa-right-to-bracket w-4 text-center"></i><span>Sign In</span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
+<body class="bg-base-100 text-base-content antialiased min-h-screen">
+    <header id="dhanur-shell"></header>
 
-    <!-- Mobile Panel -->
-    <div id="shell-mobile-panel" class="fixed inset-0 z-[100] hidden" data-shell-mobile-panel>
-        <div class="absolute inset-0 bg-black/50" data-shell-mobile-backdrop></div>
-        <div class="absolute top-0 left-0 bottom-0 w-72 bg-base-100 shadow-2xl flex flex-col overflow-y-auto" data-shell-mobile-drawer>
-            <div class="flex items-center justify-between px-4 py-3 border-b border-base-content/10">
-                <a href="https://dhanur.me/" class="font-bold text-lg text-base-content">dhanur.me</a>
-                <button type="button" class="btn btn-ghost btn-circle btn-sm" data-shell-mobile-close aria-label="Close menu">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
+    <main class="eco-page eco-container">
+        <!-- Hero Section -->
+        <div class="mb-10 text-center sm:text-left">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20 mb-4">
+                <i class="fa-solid fa-layer-group"></i> Showcase &amp; Prototypes
             </div>
-            <div class="px-4 py-3 border-b border-base-content/10">
-                <a href="https://dhanur.me/" class="btn btn-sm btn-ghost w-full justify-start"><i class="fa-solid fa-house mr-2"></i>Home</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main Content -->
-    <main class="w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
-        <!-- Breadcrumbs -->
-        <div class="breadcrumbs text-xs text-base-content/60 mb-4 px-1">
-            <ul>
-                <li><a href="https://dhanur.me/" class="hover:text-base-content">Home</a></li>
-                <li class="font-semibold text-base-content">Stuff</li>
-            </ul>
+            <h1 class="text-3xl sm:text-4xl font-black tracking-tight mb-3">My Stuff</h1>
+            <p class="text-base text-base-content/70 max-w-xl">
+                A curated collection of standalone utilities, interactive experiments, and micro-applications built by Dhanur.
+            </p>
         </div>
 
-        <!-- Hero Header -->
-        <div class="mb-8">
-            <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider mb-3">
-                <i class="fa-solid fa-shapes"></i> Micro-Tools & Playground
-            </div>
-            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3">My Stuff</h1>
-            <p class="text-base sm:text-lg text-base-content/70 max-w-2xl">A curated suite of developer tools, interactive web toys, converters, and standalone utilities across the ecosystem.</p>
-        </div>
-
-        <!-- Search & Filter Controls -->
-        <div class="flex flex-col md:flex-row gap-4 items-stretch md:items-center justify-between mb-8">
-            <div class="relative flex-1 max-w-md">
-                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-base-content/40 text-sm"></i>
-                <input
-                    type="text"
-                    id="tool-search"
-                    class="dui-input pl-10 pr-4 w-full text-sm rounded-xl border border-base-content/15 bg-base-200/40 focus:bg-base-100 transition-all"
-                    placeholder="Search 25+ tools (e.g., base64, jwt, regex, qr, uuid)..."
-                    oninput="filterTools()"
-                />
-            </div>
-            <div class="flex flex-wrap gap-1.5" id="category-pills">
-                <button type="button" class="btn btn-xs sm:btn-sm btn-primary rounded-lg filter-btn active" onclick="setCategory('all', this)">All</button>
-                <button type="button" class="btn btn-xs sm:btn-sm btn-ghost rounded-lg filter-btn" onclick="setCategory('featured', this)">Featured</button>
-                <button type="button" class="btn btn-xs sm:btn-sm btn-ghost rounded-lg filter-btn" onclick="setCategory('security', this)">Security</button>
-                <button type="button" class="btn btn-xs sm:btn-sm btn-ghost rounded-lg filter-btn" onclick="setCategory('converters', this)">Converters</button>
-                <button type="button" class="btn btn-xs sm:btn-sm btn-ghost rounded-lg filter-btn" onclick="setCategory('dev', this)">Dev Tools</button>
-                <button type="button" class="btn btn-xs sm:btn-sm btn-ghost rounded-lg filter-btn" onclick="setCategory('text', this)">Text & Data</button>
-            </div>
-        </div>
-
-        <!-- Tools Grid -->
-        <div id="tools-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <!-- Featured: Calculator App -->
-            <a href="/stuff/calculator/" class="dui-surface tool-card transition-all hover:-translate-y-1 hover:shadow-lg block no-underline text-inherit border border-base-content/10" data-category="featured dev" data-name="calculator math numbers glassmorphic">
-                <div class="dui-surface-body p-5 flex flex-col justify-between h-full">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center justify-center w-11 h-11 rounded-xl bg-accent/10 border border-accent/20 text-accent">
-                                <i class="fa-solid fa-calculator text-xl"></i>
-                            </div>
-                            <span class="dui-badge text-[10px] uppercase tracking-wider font-bold bg-accent/10 text-accent border border-accent/20">Featured</span>
-                        </div>
-                        <h2 class="text-base font-bold text-base-content m-0 mb-1">Calculator</h2>
-                        <p class="text-xs text-base-content/65 m-0 leading-relaxed">Sleek glassmorphic web calculator with keyboard acceleration and tokenizer evaluation.</p>
+        <!-- Featured Tools Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <!-- Calculator Card -->
+            <a href="/stuff/calculator/" class="eco-card group no-underline text-inherit hover:border-primary/40">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-calculator text-xl"></i>
                     </div>
-                    <div class="mt-4 pt-3 border-t border-base-content/5 flex items-center justify-between text-[11px] text-base-content/40 font-mono">
-                        <span>/stuff/calculator/</span>
-                        <i class="fa-solid fa-arrow-right text-xs transition-transform group-hover:translate-x-1"></i>
-                    </div>
+                    <span class="dui-badge dui-badge-accent font-mono text-xs font-medium">SUBMODULE</span>
+                </div>
+                <h2 class="text-lg font-bold text-base-content mb-1 group-hover:text-primary transition-colors">Calculator</h2>
+                <p class="text-sm text-base-content/65 mb-4 leading-relaxed">
+                    A sleek glassmorphism arithmetic calculator featuring smooth animations, responsive touch controls, and history tracking.
+                </p>
+                <div class="mt-auto pt-3 border-t border-base-content/10 flex items-center justify-between text-xs font-medium text-base-content/60 group-hover:text-primary">
+                    <span>Launch Calculator</span>
+                    <i class="fa-solid fa-arrow-right -translate-x-1 group-hover:translate-x-0 transition-transform"></i>
                 </div>
             </a>
 
-            <!-- Featured: Weather App -->
-            <a href="/stuff/weather/" class="dui-surface tool-card transition-all hover:-translate-y-1 hover:shadow-lg block no-underline text-inherit border border-base-content/10" data-category="featured" data-name="weather temperature live meteorology location forecast">
-                <div class="dui-surface-body p-5 flex flex-col justify-between h-full">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center justify-center w-11 h-11 rounded-xl bg-info/10 border border-info/20 text-info">
-                                <i class="fa-solid fa-cloud-sun text-xl"></i>
-                            </div>
-                            <span class="dui-badge text-[10px] uppercase tracking-wider font-bold bg-info/10 text-info border border-info/20">Live API</span>
-                        </div>
-                        <h2 class="text-base font-bold text-base-content m-0 mb-1">Weather</h2>
-                        <p class="text-xs text-base-content/65 m-0 leading-relaxed">Real-time local weather conditions, humidity, wind velocity, and ambient forecast.</p>
+            <!-- Weather Card -->
+            <a href="/stuff/weather/" class="eco-card group no-underline text-inherit hover:border-primary/40">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-12 h-12 rounded-xl bg-info/10 border border-info/20 flex items-center justify-center text-info group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-cloud-sun text-xl"></i>
                     </div>
-                    <div class="mt-4 pt-3 border-t border-base-content/5 flex items-center justify-between text-[11px] text-base-content/40 font-mono">
-                        <span>/stuff/weather/</span>
-                        <i class="fa-solid fa-arrow-right text-xs transition-transform group-hover:translate-x-1"></i>
-                    </div>
+                    <span class="dui-badge dui-badge-info font-mono text-xs font-medium">SUBMODULE</span>
                 </div>
-            </a>
-
-            <!-- Base64 Converter -->
-            <a href="/stuff/base64/" class="dui-surface tool-card transition-all hover:-translate-y-1 hover:shadow-lg block no-underline text-inherit border border-base-content/10" data-category="converters dev" data-name="base64 encode decode encoder binary text">
-                <div class="dui-surface-body p-5 flex flex-col justify-between h-full">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center justify-center w-11 h-11 rounded-xl bg-warning/10 border border-warning/20 text-warning">
-                                <i class="fa-solid fa-code text-xl"></i>
-                            </div>
-                            <span class="text-[10px] uppercase font-bold tracking-wider text-base-content/40">Converter</span>
-                        </div>
-                        <h2 class="text-base font-bold text-base-content m-0 mb-1">Base64 Converter</h2>
-                        <p class="text-xs text-base-content/65 m-0 leading-relaxed">Instant dual-directional Base64 encoding and decoding with clipboard syncing.</p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-base-content/5 flex items-center justify-between text-[11px] text-base-content/40 font-mono">
-                        <span>/stuff/base64/</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </div>
-                </div>
-            </a>
-
-            <!-- JWT Inspector -->
-            <a href="/stuff/jwt/" class="dui-surface tool-card transition-all hover:-translate-y-1 hover:shadow-lg block no-underline text-inherit border border-base-content/10" data-category="security dev" data-name="jwt token debugger claims header payload signature auth">
-                <div class="dui-surface-body p-5 flex flex-col justify-between h-full">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center justify-center w-11 h-11 rounded-xl bg-error/10 border border-error/20 text-error">
-                                <i class="fa-solid fa-key text-xl"></i>
-                            </div>
-                            <span class="text-[10px] uppercase font-bold tracking-wider text-base-content/40">Security</span>
-                        </div>
-                        <h2 class="text-base font-bold text-base-content m-0 mb-1">JWT Debugger</h2>
-                        <p class="text-xs text-base-content/65 m-0 leading-relaxed">Decode, inspect claims, timestamp expiry, and validate JSON Web Tokens locally.</p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-base-content/5 flex items-center justify-between text-[11px] text-base-content/40 font-mono">
-                        <span>/stuff/jwt/</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </div>
-                </div>
-            </a>
-
-            <!-- JSON Formatter -->
-            <a href="/stuff/json/" class="dui-surface tool-card transition-all hover:-translate-y-1 hover:shadow-lg block no-underline text-inherit border border-base-content/10" data-category="dev text" data-name="json formatter validator beautifier minify prettify">
-                <div class="dui-surface-body p-5 flex flex-col justify-between h-full">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center justify-center w-11 h-11 rounded-xl bg-primary/10 border border-primary/20 text-primary">
-                                <i class="fa-solid fa-brackets-curly text-xl"></i>
-                            </div>
-                            <span class="text-[10px] uppercase font-bold tracking-wider text-base-content/40">Data</span>
-                        </div>
-                        <h2 class="text-base font-bold text-base-content m-0 mb-1">JSON Formatter</h2>
-                        <p class="text-xs text-base-content/65 m-0 leading-relaxed">Beautify, validate syntax, collapse keys, and minify JSON with tree visualization.</p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-base-content/5 flex items-center justify-between text-[11px] text-base-content/40 font-mono">
-                        <span>/stuff/json/</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Hash Generator -->
-            <a href="/stuff/hash/" class="dui-surface tool-card transition-all hover:-translate-y-1 hover:shadow-lg block no-underline text-inherit border border-base-content/10" data-category="security dev" data-name="hash md5 sha sha256 sha512 checksum crypto">
-                <div class="dui-surface-body p-5 flex flex-col justify-between h-full">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center justify-center w-11 h-11 rounded-xl bg-error/10 border border-error/20 text-error">
-                                <i class="fa-solid fa-fingerprint text-xl"></i>
-                            </div>
-                            <span class="text-[10px] uppercase font-bold tracking-wider text-base-content/40">Security</span>
-                        </div>
-                        <h2 class="text-base font-bold text-base-content m-0 mb-1">Hash Generator</h2>
-                        <p class="text-xs text-base-content/65 m-0 leading-relaxed">Calculate cryptographic digests: MD5, SHA-1, SHA-256, and SHA-512 in parallel.</p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-base-content/5 flex items-center justify-between text-[11px] text-base-content/40 font-mono">
-                        <span>/stuff/hash/</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </div>
-                </div>
-            </a>
-
-            <!-- UUID Generator -->
-            <a href="/stuff/uuid/" class="dui-surface tool-card transition-all hover:-translate-y-1 hover:shadow-lg block no-underline text-inherit border border-base-content/10" data-category="dev" data-name="uuid guid v4 generator identifier random">
-                <div class="dui-surface-body p-5 flex flex-col justify-between h-full">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center justify-center w-11 h-11 rounded-xl bg-success/10 border border-success/20 text-success">
-                                <i class="fa-solid fa-hashtag text-xl"></i>
-                            </div>
-                            <span class="text-[10px] uppercase font-bold tracking-wider text-base-content/40">Generator</span>
-                        </div>
-                        <h2 class="text-base font-bold text-base-content m-0 mb-1">UUID / GUID Generator</h2>
-                        <p class="text-xs text-base-content/65 m-0 leading-relaxed">Generate single or batch cryptographically secure UUID v4 tokens with one click.</p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-base-content/5 flex items-center justify-between text-[11px] text-base-content/40 font-mono">
-                        <span>/stuff/uuid/</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </div>
-                </div>
-            </a>
-
-            <!-- QR Code Generator -->
-            <a href="/stuff/qr/" class="dui-surface tool-card transition-all hover:-translate-y-1 hover:shadow-lg block no-underline text-inherit border border-base-content/10" data-category="converters dev" data-name="qr code generator barcode url link download">
-                <div class="dui-surface-body p-5 flex flex-col justify-between h-full">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center justify-center w-11 h-11 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400">
-                                <i class="fa-solid fa-qrcode text-xl"></i>
-                            </div>
-                            <span class="text-[10px] uppercase font-bold tracking-wider text-base-content/40">Visual</span>
-                        </div>
-                        <h2 class="text-base font-bold text-base-content m-0 mb-1">QR Code Generator</h2>
-                        <p class="text-xs text-base-content/65 m-0 leading-relaxed">Create instant scannable high-resolution QR codes for URLs, WiFi, and raw text.</p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-base-content/5 flex items-center justify-between text-[11px] text-base-content/40 font-mono">
-                        <span>/stuff/qr/</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Regex Tester -->
-            <a href="/stuff/regex/" class="dui-surface tool-card transition-all hover:-translate-y-1 hover:shadow-lg block no-underline text-inherit border border-base-content/10" data-category="dev text" data-name="regex tester regular expression match pattern testing">
-                <div class="dui-surface-body p-5 flex flex-col justify-between h-full">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center justify-center w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400">
-                                <i class="fa-solid fa-asterisk text-xl"></i>
-                            </div>
-                            <span class="text-[10px] uppercase font-bold tracking-wider text-base-content/40">Testing</span>
-                        </div>
-                        <h2 class="text-base font-bold text-base-content m-0 mb-1">Regex Tester</h2>
-                        <p class="text-xs text-base-content/65 m-0 leading-relaxed">Real-time regular expression evaluator with capture group breakdown and matches.</p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-base-content/5 flex items-center justify-between text-[11px] text-base-content/40 font-mono">
-                        <span>/stuff/regex/</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </div>
-                </div>
-            </a>
-
-            <!-- TOTP Authenticator -->
-            <a href="/stuff/totp/" class="dui-surface tool-card transition-all hover:-translate-y-1 hover:shadow-lg block no-underline text-inherit border border-base-content/10" data-category="security" data-name="totp 2fa authenticator two factor otp token code">
-                <div class="dui-surface-body p-5 flex flex-col justify-between h-full">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center justify-center w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
-                                <i class="fa-solid fa-shield-halved text-xl"></i>
-                            </div>
-                            <span class="text-[10px] uppercase font-bold tracking-wider text-base-content/40">Security</span>
-                        </div>
-                        <h2 class="text-base font-bold text-base-content m-0 mb-1">TOTP 2FA Generator</h2>
-                        <p class="text-xs text-base-content/65 m-0 leading-relaxed">Generate 30-second rotating 2FA verification passcodes from raw secret seeds.</p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-base-content/5 flex items-center justify-between text-[11px] text-base-content/40 font-mono">
-                        <span>/stuff/totp/</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Text Diff Checker -->
-            <a href="/stuff/diff/" class="dui-surface tool-card transition-all hover:-translate-y-1 hover:shadow-lg block no-underline text-inherit border border-base-content/10" data-category="dev text" data-name="diff checker compare text side by side changes delta">
-                <div class="dui-surface-body p-5 flex flex-col justify-between h-full">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center justify-center w-11 h-11 rounded-xl bg-teal-500/10 border border-teal-500/20 text-teal-400">
-                                <i class="fa-solid fa-code-compare text-xl"></i>
-                            </div>
-                            <span class="text-[10px] uppercase font-bold tracking-wider text-base-content/40">Comparison</span>
-                        </div>
-                        <h2 class="text-base font-bold text-base-content m-0 mb-1">Text Diff Checker</h2>
-                        <p class="text-xs text-base-content/65 m-0 leading-relaxed">Side-by-side and unified text comparison tool highlighting line and char deltas.</p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-base-content/5 flex items-center justify-between text-[11px] text-base-content/40 font-mono">
-                        <span>/stuff/diff/</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Color Palette & Picker -->
-            <a href="/stuff/color/" class="dui-surface tool-card transition-all hover:-translate-y-1 hover:shadow-lg block no-underline text-inherit border border-base-content/10" data-category="converters dev" data-name="color picker hex rgb hsl oklch converter palette">
-                <div class="dui-surface-body p-5 flex flex-col justify-between h-full">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center justify-center w-11 h-11 rounded-xl bg-pink-500/10 border border-pink-500/20 text-pink-400">
-                                <i class="fa-solid fa-palette text-xl"></i>
-                            </div>
-                            <span class="text-[10px] uppercase font-bold tracking-wider text-base-content/40">Design</span>
-                        </div>
-                        <h2 class="text-base font-bold text-base-content m-0 mb-1">Color Studio</h2>
-                        <p class="text-xs text-base-content/65 m-0 leading-relaxed">Translate and convert colors between HEX, RGB, HSL, and OKLCH color spaces.</p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-base-content/5 flex items-center justify-between text-[11px] text-base-content/40 font-mono">
-                        <span>/stuff/color/</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Unix Timestamp Converter -->
-            <a href="/stuff/timestamp/" class="dui-surface tool-card transition-all hover:-translate-y-1 hover:shadow-lg block no-underline text-inherit border border-base-content/10" data-category="converters dev" data-name="timestamp epoch unix time date converter timezone">
-                <div class="dui-surface-body p-5 flex flex-col justify-between h-full">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400">
-                                <i class="fa-solid fa-clock text-xl"></i>
-                            </div>
-                            <span class="text-[10px] uppercase font-bold tracking-wider text-base-content/40">Time</span>
-                        </div>
-                        <h2 class="text-base font-bold text-base-content m-0 mb-1">Epoch Timestamp</h2>
-                        <p class="text-xs text-base-content/65 m-0 leading-relaxed">Convert Unix epoch timestamps to UTC and human-readable local datetime formats.</p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-base-content/5 flex items-center justify-between text-[11px] text-base-content/40 font-mono">
-                        <span>/stuff/timestamp/</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Markdown Previewer -->
-            <a href="/stuff/markdown/" class="dui-surface tool-card transition-all hover:-translate-y-1 hover:shadow-lg block no-underline text-inherit border border-base-content/10" data-category="text dev" data-name="markdown preview editor render gfm html live">
-                <div class="dui-surface-body p-5 flex flex-col justify-between h-full">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center justify-center w-11 h-11 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
-                                <i class="fa-brands fa-markdown text-xl"></i>
-                            </div>
-                            <span class="text-[10px] uppercase font-bold tracking-wider text-base-content/40">Editor</span>
-                        </div>
-                        <h2 class="text-base font-bold text-base-content m-0 mb-1">Markdown Live Preview</h2>
-                        <p class="text-xs text-base-content/65 m-0 leading-relaxed">Fast side-by-side GitHub Flavored Markdown editor with live rendered HTML output.</p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-base-content/5 flex items-center justify-between text-[11px] text-base-content/40 font-mono">
-                        <span>/stuff/markdown/</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Password Generator -->
-            <a href="/stuff/password/" class="dui-surface tool-card transition-all hover:-translate-y-1 hover:shadow-lg block no-underline text-inherit border border-base-content/10" data-category="security" data-name="password generator secure entropy random credentials">
-                <div class="dui-surface-body p-5 flex flex-col justify-between h-full">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center justify-center w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
-                                <i class="fa-solid fa-lock text-xl"></i>
-                            </div>
-                            <span class="text-[10px] uppercase font-bold tracking-wider text-base-content/40">Security</span>
-                        </div>
-                        <h2 class="text-base font-bold text-base-content m-0 mb-1">Password Generator</h2>
-                        <p class="text-xs text-base-content/65 m-0 leading-relaxed">High-entropy cryptographic password generator with customizable symbol sets.</p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-base-content/5 flex items-center justify-between text-[11px] text-base-content/40 font-mono">
-                        <span>/stuff/password/</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </div>
-                </div>
-            </a>
-
-            <!-- URL Encoder / Decoder -->
-            <a href="/stuff/url/" class="dui-surface tool-card transition-all hover:-translate-y-1 hover:shadow-lg block no-underline text-inherit border border-base-content/10" data-category="converters dev" data-name="url encode decode uri component percent escaping">
-                <div class="dui-surface-body p-5 flex flex-col justify-between h-full">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center justify-center w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400">
-                                <i class="fa-solid fa-link text-xl"></i>
-                            </div>
-                            <span class="text-[10px] uppercase font-bold tracking-wider text-base-content/40">Web</span>
-                        </div>
-                        <h2 class="text-base font-bold text-base-content m-0 mb-1">URL Encoder & Decoder</h2>
-                        <p class="text-xs text-base-content/65 m-0 leading-relaxed">Clean URL percent encoding and decoding for complex query-strings and paths.</p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-base-content/5 flex items-center justify-between text-[11px] text-base-content/40 font-mono">
-                        <span>/stuff/url/</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </div>
+                <h2 class="text-lg font-bold text-base-content mb-1 group-hover:text-primary transition-colors">Weather</h2>
+                <p class="text-sm text-base-content/65 mb-4 leading-relaxed">
+                    Live meteorological dashboard displaying atmospheric telemetry, dynamic forecast conditions, and localized metrics.
+                </p>
+                <div class="mt-auto pt-3 border-t border-base-content/10 flex items-center justify-between text-xs font-medium text-base-content/60 group-hover:text-primary">
+                    <span>Launch Weather</span>
+                    <i class="fa-solid fa-arrow-right -translate-x-1 group-hover:translate-x-0 transition-transform"></i>
                 </div>
             </a>
         </div>
 
-        <!-- No Results Fallback -->
-        <div id="no-results" class="hidden text-center py-16">
-            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-base-200 text-base-content/30 mb-3">
-                <i class="fa-solid fa-magnifying-glass text-2xl"></i>
-            </div>
-            <p class="text-base font-semibold text-base-content/70">No matching tools found</p>
-            <p class="text-xs text-base-content/40 mt-1">Try a different search term or category filter</p>
-        </div>
-
-        <!-- Outgoing Platform Navigation Footer -->
-        <footer class="mt-16 pt-8 border-t border-base-content/10">
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-xs mb-8">
-                <div>
-                    <h3 class="font-bold text-base-content uppercase tracking-wider mb-2 text-[11px]">Ecosystem Hub</h3>
-                    <ul class="space-y-1.5 text-base-content/60">
-                        <li><a href="https://dhanur.me/" class="hover:text-base-content underline">dhanur.me Home</a></li>
-                        <li><a href="https://dhanur.me/blog/" class="hover:text-base-content underline">Engineering Blog</a></li>
-                        <li><a href="https://dhanur.me/projects/" class="hover:text-base-content underline">Projects Catalog</a></li>
-                        <li><a href="https://dhanur.me/about/" class="hover:text-base-content underline">About Developer</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="font-bold text-base-content uppercase tracking-wider mb-2 text-[11px]">Platform Services</h3>
-                    <ul class="space-y-1.5 text-base-content/60">
-                        <li><a href="https://tasks.dhanur.me/" class="hover:text-base-content underline">Tasks Kanban</a></li>
-                        <li><a href="https://linkr.dhanur.me/" class="hover:text-base-content underline">Linkr URL Shortener</a></li>
-                        <li><a href="https://auth.dhanur.me/" class="hover:text-base-content underline">Auth Central</a></li>
-                        <li><a href="https://up.dhanur.me/" class="hover:text-base-content underline">Up Service Health</a></li>
-                        <li><a href="https://pulse.dhanur.me/" class="hover:text-base-content underline">Pulse Infrastructure</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="font-bold text-base-content uppercase tracking-wider mb-2 text-[11px]">Micro-Tools</h3>
-                    <ul class="space-y-1.5 text-base-content/60">
-                        <li><a href="/stuff/calculator/" class="hover:text-base-content underline">Calculator</a></li>
-                        <li><a href="/stuff/weather/" class="hover:text-base-content underline">Weather Dashboard</a></li>
-                        <li><a href="/stuff/base64/" class="hover:text-base-content underline">Base64 Converter</a></li>
-                        <li><a href="/stuff/jwt/" class="hover:text-base-content underline">JWT Debugger</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="font-bold text-base-content uppercase tracking-wider mb-2 text-[11px]">Open Source</h3>
-                    <ul class="space-y-1.5 text-base-content/60">
-                        <li><a href="https://github.com/kascit/stuff" target="_blank" rel="noopener noreferrer" class="hover:text-base-content underline">GitHub Repository</a></li>
-                        <li><a href="https://github.com/kascit" target="_blank" rel="noopener noreferrer" class="hover:text-base-content underline">Developer Profile</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="text-center text-[11px] text-base-content/40">
-                <p>&copy; 2026 Dhanur Relhan. Engineered for high performance & responsive utility.</p>
+        <!-- Clean minimal footer -->
+        <footer class="eco-footer">
+            <span>&copy; <span id="year">2026</span> Dhanur Relhan</span>
+            <div class="flex items-center gap-4">
+                <a href="https://dhanur.me/" class="hover:text-base-content transition-colors">dhanur.me</a>
+                <a href="https://github.com/kascit/stuff" class="hover:text-base-content transition-colors" target="_blank" rel="noopener noreferrer">Source</a>
             </div>
         </footer>
     </main>
 
-    <!-- Search & Filter Logic -->
     <script>
-        let currentCategory = 'all';
-
-        function setCategory(cat, btn) {
-            currentCategory = cat;
-            document.querySelectorAll('.filter-btn').forEach(b => {
-                b.classList.remove('btn-primary', 'active');
-                b.classList.add('btn-ghost');
-            });
-            btn.classList.add('btn-primary', 'active');
-            btn.classList.remove('btn-ghost');
-            filterTools();
-        }
-
-        function filterTools() {
-            const query = (document.getElementById('tool-search').value || '').toLowerCase().trim();
-            const cards = document.querySelectorAll('.tool-card');
-            let visibleCount = 0;
-
-            cards.forEach(card => {
-                const name = (card.getAttribute('data-name') || '').toLowerCase();
-                const title = card.querySelector('h2') ? card.querySelector('h2').textContent.toLowerCase() : '';
-                const desc = card.querySelector('p') ? card.querySelector('p').textContent.toLowerCase() : '';
-                const cat = (card.getAttribute('data-category') || '').toLowerCase();
-
-                const matchesQuery = !query || name.includes(query) || title.includes(query) || desc.includes(query);
-                const matchesCat = currentCategory === 'all' || cat.includes(currentCategory);
-
-                if (matchesQuery && matchesCat) {
-                    card.classList.remove('hidden');
-                    visibleCount++;
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-
-            const noRes = document.getElementById('no-results');
-            if (visibleCount === 0) {
-                noRes.classList.remove('hidden');
-            } else {
-                noRes.classList.add('hidden');
-            }
-        }
+        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
-
