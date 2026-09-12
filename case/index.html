@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Converter | dhanur.me</title>
+    <script>
+    window.SiteNavConfig = {
+        mode: "navbar",
+        nav: [
+            { name: "Stuff", url: "/stuff/", icon: "fa-solid fa-grid" },
+            { name: "Home", url: "https://dhanur.me/", icon: "fa-solid fa-house" }
+        ],
+        sidebarNav: [],
+        activePath: window.location.pathname,
+        badge: { text: "TEXT", class: "badge-primary" },
+        showSearch: false,
+        showAppsGrid: true,
+        showThemeToggle: true
+    };
+    </script>
+    <script src="https://dhanur.me/js/shell.min.js" defer></script>
+    <link rel="stylesheet" href="https://dhanur.me/css/dui.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body class="min-h-screen bg-base-100 text-base-content antialiased pt-20">
+    <div class="navbar site-topbar fixed top-0 left-0 right-0 z-50 h-16 border-b border-base-content/10 bg-base-100/80 backdrop-blur-md">
+        <div class="flex-none lg:hidden">
+            <button id="shell-mobile-toggle" type="button" aria-label="Open menu" class="btn btn-ghost btn-circle btn-sm">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+        <div class="flex-1 flex justify-center items-center lg:flex lg:justify-start">
+            <a href="https://dhanur.me/" class="btn btn-ghost hover:bg-transparent hover:border-transparent normal-case text-xl font-bold text-base-content logo-firefly site-logo-link">
+                <div class="relative h-18 flex items-center">
+                    <picture>
+                        <img src="https://raw.githubusercontent.com/kascit/kascit.github.io/raw-mirror/images/branding/logo-light.png" alt="~/dhanur" class="h-18 w-auto p-[15px] logo-dark" sizes="200px" />
+                    </picture>
+                    <picture class="absolute inset-0 flex items-center">
+                        <img src="https://raw.githubusercontent.com/kascit/kascit.github.io/raw-mirror/images/branding/logo-dark.png" alt="~/dhanur" class="h-18 w-auto p-[15px] logo-light" sizes="200px" />
+                    </picture>
+                </div>
+            </a>
+        </div>
+        <div class="flex-none hidden lg:flex">
+            <ul class="menu menu-horizontal px-1 items-center">
+                <li data-nav-chrome="apps" class="ml-1">
+                    <div class="relative p-0" data-dropdown="apps">
+                        <div tabindex="0" role="button" class="btn btn-ghost btn-square tooltip tooltip-bottom" data-tooltip-label="Apps" aria-label="Apps">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                        </div>
+                        <div class="dropdown-panel z-50 mt-2 p-4 bg-base-100 border border-base-content/10 rounded-box w-64 right-0 mr-2 md:mr-4">
+                            <div class="grid grid-cols-3 gap-2" data-app-menu-grid="desktop">
+                                <div class="col-span-3 flex justify-center py-4 opacity-50"><span class="loading loading-spinner loading-sm"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li data-nav-chrome="account" class="ml-1">
+                    <div class="relative p-0" data-dropdown="account">
+                        <div tabindex="0" role="button" class="btn btn-ghost btn-circle tooltip tooltip-bottom" data-tooltip-label="Account" aria-label="Account">
+                            <div data-auth="nav-guest-avatar" class="w-9 h-9 rounded-full bg-base-300 flex items-center justify-center">
+                                <i class="fa-solid fa-user text-base-content/50 text-sm"></i>
+                            </div>
+                        </div>
+                        <div class="dropdown-panel z-50 mt-2 bg-base-100 border border-base-content/10 rounded-box w-64 right-0 mr-2 md:mr-4 overflow-hidden">
+                            <div class="px-3 pt-3 pb-2 border-b border-base-content/10 cursor-default select-none">
+                                <div class="font-semibold text-sm">Ecosystem Account</div>
+                                <div class="text-xs opacity-60">Sign in for cross-app synchronization</div>
+                            </div>
+                            <ul class="menu p-2">
+                                <li data-nav-chrome="theme">
+                                    <div class="flex items-center gap-2.5 px-2.5 py-2">
+                                        <i class="fa-solid fa-circle-half-stroke w-4 text-center opacity-60"></i>
+                                        <div id="theme-toggle" class="theme-switcher w-full bg-base-300/70 text-xs font-medium">
+                                            <button data-theme-mode="light" class="theme-switcher-btn rounded-md px-2 py-1.5"><i class="fa-solid fa-sun mr-1"></i>Light</button>
+                                            <button data-theme-mode="dark" class="theme-switcher-btn rounded-md px-2 py-1.5"><i class="fa-solid fa-moon mr-1"></i>Dark</button>
+                                            <button data-theme-mode="auto" class="theme-switcher-btn rounded-md px-2 py-1.5"><i class="fa-solid fa-circle-half-stroke mr-1"></i>Auto</button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><a class="flex items-center gap-3" href="https://auth.dhanur.me/"><i class="fa-solid fa-right-to-bracket w-4 text-center"></i><span>Sign In</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Mobile Panel -->
+    <div id="shell-mobile-panel" class="fixed inset-0 z-[100] hidden" data-shell-mobile-panel>
+        <div class="absolute inset-0 bg-black/50" data-shell-mobile-backdrop></div>
+        <div class="absolute top-0 left-0 bottom-0 w-72 bg-base-100 shadow-2xl flex flex-col overflow-y-auto" data-shell-mobile-drawer>
+            <div class="flex items-center justify-between px-4 py-3 border-b border-base-content/10">
+                <a href="https://dhanur.me/" class="font-bold text-lg text-base-content">dhanur.me</a>
+                <button type="button" class="btn btn-ghost btn-circle btn-sm" data-shell-mobile-close aria-label="Close menu">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="px-4 py-3 border-b border-base-content/10">
+                <a href="/stuff/" class="btn btn-sm btn-ghost w-full justify-start"><i class="fa-solid fa-arrow-left mr-2"></i>Back to Stuff</a>
+            </div>
+        </div>
+    </div>
+    <main class="w-full max-w-2xl mx-auto p-4 flex flex-col items-center justify-center min-h-[calc(100vh-6rem)]">
+        <div class="dui-surface w-full">
+            <div class="dui-surface-body p-6 space-y-4">
+                <div class="text-center mb-6">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 text-primary mx-auto mb-3">
+                        <i class="fa-solid fa-font text-2xl"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold">Case Converter</h1>
+                    <p class="text-sm text-base-content/60">Transform text between cases</p>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-semibold text-base-content/70">Input Text</label>
+                    <textarea id="input" class="dui-input w-full text-sm" rows="3" placeholder="Enter text here..." oninput="updateAll()"></textarea>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    <button class="dui-btn dui-btn-sm dui-btn-primary" onclick="convert('camel')">camelCase</button>
+                    <button class="dui-btn dui-btn-sm dui-btn-ghost" onclick="convert('pascal')">PascalCase</button>
+                    <button class="dui-btn dui-btn-sm dui-btn-ghost" onclick="convert('snake')">snake_case</button>
+                    <button class="dui-btn dui-btn-sm dui-btn-ghost" onclick="convert('kebab')">kebab-case</button>
+                    <button class="dui-btn dui-btn-sm dui-btn-ghost" onclick="convert('constant')">CONSTANT_CASE</button>
+                    <button class="dui-btn dui-btn-sm dui-btn-ghost" onclick="convert('title')">Title Case</button>
+                </div>
+
+                <div class="bg-base-200/50 border border-base-content/10 rounded-xl p-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <span id="case-label" class="text-xs font-semibold text-base-content/40 uppercase">Output</span>
+                        <button class="dui-btn dui-btn-xs dui-btn-ghost" onclick="copyOutput()">
+                            <i class="fa-solid fa-copy"></i>
+                        </button>
+                    </div>
+                    <div id="output" class="font-mono text-lg break-all"></div>
+                </div>
+
+                <!-- All Cases Display -->
+                <div class="grid grid-cols-2 gap-3 text-sm">
+                    <div class="bg-base-200/30 p-3 rounded-lg">
+                        <div class="text-[10px] text-base-content/40 uppercase">camelCase</div>
+                        <div id="camel" class="font-mono break-all"></div>
+                    </div>
+                    <div class="bg-base-200/30 p-3 rounded-lg">
+                        <div class="text-[10px] text-base-content/40 uppercase">PascalCase</div>
+                        <div id="pascal" class="font-mono break-all"></div>
+                    </div>
+                    <div class="bg-base-200/30 p-3 rounded-lg">
+                        <div class="text-[10px] text-base-content/40 uppercase">snake_case</div>
+                        <div id="snake" class="font-mono break-all"></div>
+                    </div>
+                    <div class="bg-base-200/30 p-3 rounded-lg">
+                        <div class="text-[10px] text-base-content/40 uppercase">kebab-case</div>
+                        <div id="kebab" class="font-mono break-all"></div>
+                    </div>
+                    <div class="bg-base-200/30 p-3 rounded-lg">
+                        <div class="text-[10px] text-base-content/40 uppercase">CONSTANT_CASE</div>
+                        <div id="constant" class="font-mono break-all"></div>
+                    </div>
+                    <div class="bg-base-200/30 p-3 rounded-lg">
+                        <div class="text-[10px] text-base-content/40 uppercase">Title Case</div>
+                        <div id="title" class="font-mono break-all"></div>
+                    </div>
+                </div>
+
+                <div class="flex gap-2">
+                    <button class="dui-btn dui-btn-ghost flex-1 text-sm" onclick="generateSlug()">
+                        <i class="fa-solid fa-link mr-2"></i>Generate Slug
+                    </button>
+                    <button class="dui-btn dui-btn-ghost text-sm" onclick="shareLink()">
+                        <i class="fa-solid fa-link"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    
+        <footer class="mt-8 text-center text-xs text-base-content/40 mb-8">
+            <p><a href="/stuff/" class="hover:text-base-content underline">← Back to Stuff Playground</a> &bull; Part of <a href="https://dhanur.me/" class="underline hover:text-base-content">dhanur.me</a></p>
+        </footer>
+    </main>
+
+    <script type="module">
+        import { API, Case } from '../js-shared/api-core.js';
+
+        let currentCase = 'camel';
+        let currentInput = '';
+
+        window.updateAll = () => {
+            currentInput = document.getElementById('input').value;
+            if (!currentInput) {
+                ['camel', 'pascal', 'snake', 'kebab', 'constant', 'title'].forEach(c => {
+                    document.getElementById(c).textContent = '';
+                });
+                document.getElementById('output').textContent = '';
+                return;
+            }
+
+            document.getElementById('camel').textContent = Case.camel(currentInput);
+            document.getElementById('pascal').textContent = Case.pascal(currentInput);
+            document.getElementById('snake').textContent = Case.snake(currentInput);
+            document.getElementById('kebab').textContent = Case.kebab(currentInput);
+            document.getElementById('constant').textContent = Case.constant(currentInput);
+            document.getElementById('title').textContent = Case.title(currentInput);
+
+            convert(currentCase);
+        };
+
+        window.convert = (c) => {
+            currentCase = c;
+            document.querySelectorAll('.dui-btn-sm').forEach(btn => {
+                btn.classList.remove('dui-btn-primary');
+                btn.classList.add('dui-btn-ghost');
+            });
+            event.target.classList.remove('dui-btn-ghost');
+            event.target.classList.add('dui-btn-primary');
+
+            if (!currentInput) return;
+
+            const result = Case[c](currentInput);
+            document.getElementById('output').textContent = result;
+            document.getElementById('case-label').textContent = c + ' case';
+            API.setParams({ case: c, input: currentInput });
+        };
+
+        window.copyOutput = async () => {
+            const output = document.getElementById('output').textContent;
+            if (output && await API.copy(output)) {
+                API.toast('Copied!');
+            }
+        };
+
+        window.generateSlug = () => {
+            if (!currentInput) return;
+            const slug = Case.slug(currentInput);
+            document.getElementById('output').textContent = slug;
+            document.getElementById('case-label').textContent = 'slug';
+            API.setParams({ case: 'slug', input: currentInput });
+        };
+
+        window.shareLink = () => {
+            if (currentInput) {
+                const url = API.share({ case: currentCase, input: currentInput });
+                API.copy(url);
+                API.toast('Link copied!');
+            }
+        };
+
+        // Auto-init
+        API.autoInit((params) => {
+            if (params.input) {
+                document.getElementById('input').value = params.input;
+                updateAll();
+            }
+            if (params.case) {
+                currentCase = params.case;
+                if (currentInput) convert(currentCase);
+            }
+        });
+    </script>
+</body>
+</html>

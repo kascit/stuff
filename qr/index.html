@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code | dhanur.me</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+    window.SiteNavConfig = {
+        mode: "navbar",
+        nav: [
+            { name: "Stuff", url: "/stuff/", icon: "fa-solid fa-grid" },
+            { name: "Home", url: "https://dhanur.me/", icon: "fa-solid fa-house" }
+        ],
+        sidebarNav: [],
+        activePath: window.location.pathname,
+        badge: { text: "TOOL", class: "badge-accent" },
+        showSearch: false,
+        showAppsGrid: true,
+        showThemeToggle: true
+    };
+    </script>
+    <script src="https://dhanur.me/js/shell.min.js" defer></script>
+    <link rel="stylesheet" href="https://dhanur.me/css/dui.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body class="min-h-screen bg-base-100 text-base-content antialiased pt-20">
+    <div class="navbar site-topbar fixed top-0 left-0 right-0 z-50 h-16 border-b border-base-content/10 bg-base-100/80 backdrop-blur-md">
+        <div class="flex-none lg:hidden">
+            <button id="shell-mobile-toggle" type="button" aria-label="Open menu" class="btn btn-ghost btn-circle btn-sm">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+        <div class="flex-1 flex justify-center items-center lg:flex lg:justify-start">
+            <a href="https://dhanur.me/" class="btn btn-ghost hover:bg-transparent hover:border-transparent normal-case text-xl font-bold text-base-content logo-firefly site-logo-link">
+                <div class="relative h-18 flex items-center">
+                    <picture>
+                        <img src="https://raw.githubusercontent.com/kascit/kascit.github.io/raw-mirror/images/branding/logo-light.png" alt="~/dhanur" class="h-18 w-auto p-[15px] logo-dark" sizes="200px" />
+                    </picture>
+                    <picture class="absolute inset-0 flex items-center">
+                        <img src="https://raw.githubusercontent.com/kascit/kascit.github.io/raw-mirror/images/branding/logo-dark.png" alt="~/dhanur" class="h-18 w-auto p-[15px] logo-light" sizes="200px" />
+                    </picture>
+                </div>
+            </a>
+        </div>
+        <div class="flex-none hidden lg:flex">
+            <ul class="menu menu-horizontal px-1 items-center">
+                <li data-nav-chrome="apps" class="ml-1">
+                    <div class="relative p-0" data-dropdown="apps">
+                        <div tabindex="0" role="button" class="btn btn-ghost btn-square tooltip tooltip-bottom" data-tooltip-label="Apps" aria-label="Apps">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                        </div>
+                        <div class="dropdown-panel z-50 mt-2 p-4 bg-base-100 border border-base-content/10 rounded-box w-64 right-0 mr-2 md:mr-4">
+                            <div class="grid grid-cols-3 gap-2" data-app-menu-grid="desktop">
+                                <div class="col-span-3 flex justify-center py-4 opacity-50"><span class="loading loading-spinner loading-sm"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li data-nav-chrome="account" class="ml-1">
+                    <div class="relative p-0" data-dropdown="account">
+                        <div tabindex="0" role="button" class="btn btn-ghost btn-circle tooltip tooltip-bottom" data-tooltip-label="Account" aria-label="Account">
+                            <div data-auth="nav-guest-avatar" class="w-9 h-9 rounded-full bg-base-300 flex items-center justify-center">
+                                <i class="fa-solid fa-user text-base-content/50 text-sm"></i>
+                            </div>
+                        </div>
+                        <div class="dropdown-panel z-50 mt-2 bg-base-100 border border-base-content/10 rounded-box w-64 right-0 mr-2 md:mr-4 overflow-hidden">
+                            <div class="px-3 pt-3 pb-2 border-b border-base-content/10 cursor-default select-none">
+                                <div class="font-semibold text-sm">Ecosystem Account</div>
+                                <div class="text-xs opacity-60">Sign in for cross-app synchronization</div>
+                            </div>
+                            <ul class="menu p-2">
+                                <li data-nav-chrome="theme">
+                                    <div class="flex items-center gap-2.5 px-2.5 py-2">
+                                        <i class="fa-solid fa-circle-half-stroke w-4 text-center opacity-60"></i>
+                                        <div id="theme-toggle" class="theme-switcher w-full bg-base-300/70 text-xs font-medium">
+                                            <button data-theme-mode="light" class="theme-switcher-btn rounded-md px-2 py-1.5"><i class="fa-solid fa-sun mr-1"></i>Light</button>
+                                            <button data-theme-mode="dark" class="theme-switcher-btn rounded-md px-2 py-1.5"><i class="fa-solid fa-moon mr-1"></i>Dark</button>
+                                            <button data-theme-mode="auto" class="theme-switcher-btn rounded-md px-2 py-1.5"><i class="fa-solid fa-circle-half-stroke mr-1"></i>Auto</button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><a class="flex items-center gap-3" href="https://auth.dhanur.me/"><i class="fa-solid fa-right-to-bracket w-4 text-center"></i><span>Sign In</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Mobile Panel -->
+    <div id="shell-mobile-panel" class="fixed inset-0 z-[100] hidden" data-shell-mobile-panel>
+        <div class="absolute inset-0 bg-black/50" data-shell-mobile-backdrop></div>
+        <div class="absolute top-0 left-0 bottom-0 w-72 bg-base-100 shadow-2xl flex flex-col overflow-y-auto" data-shell-mobile-drawer>
+            <div class="flex items-center justify-between px-4 py-3 border-b border-base-content/10">
+                <a href="https://dhanur.me/" class="font-bold text-lg text-base-content">dhanur.me</a>
+                <button type="button" class="btn btn-ghost btn-circle btn-sm" data-shell-mobile-close aria-label="Close menu">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="px-4 py-3 border-b border-base-content/10">
+                <a href="/stuff/" class="btn btn-sm btn-ghost w-full justify-start"><i class="fa-solid fa-arrow-left mr-2"></i>Back to Stuff</a>
+            </div>
+        </div>
+    </div>
+    <main class="w-full max-w-lg mx-auto p-4 flex flex-col items-center justify-center min-h-[calc(100vh-6rem)]">
+        <div class="dui-surface w-full">
+            <div class="dui-surface-body p-6 space-y-4">
+                <div class="text-center mb-6">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 text-accent mx-auto mb-3">
+                        <i class="fa-solid fa-qrcode text-2xl"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold">QR Code Generator</h1>
+                    <p class="text-sm text-base-content/60">Create scannable QR codes</p>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-semibold text-base-content/70">Content</label>
+                    <textarea id="content" class="dui-input w-full text-sm" rows="3" placeholder="Enter URL, text, or data..." oninput="generate()"></textarea>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="space-y-2">
+                        <label class="text-sm font-semibold text-base-content/70">Size</label>
+                        <select id="size" class="dui-select w-full" onchange="generate()">
+                            <option value="128">128px</option>
+                            <option value="256" selected>256px</option>
+                            <option value="512">512px</option>
+                        </select>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-semibold text-base-content/70">Error Correction</label>
+                        <select id="level" class="dui-select w-full" onchange="generate()">
+                            <option value="1">Low (L)</option>
+                            <option value="0">Medium (M)</option>
+                            <option value="3" selected>High (Q)</option>
+                            <option value="2">Highest (H)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex justify-center">
+                    <div id="qrcode" class="bg-white p-4 rounded-lg"></div>
+                </div>
+
+                <div class="flex gap-2">
+                    <button class="dui-btn dui-btn-primary flex-1" onclick="downloadQR()">
+                        <i class="fa-solid fa-download mr-2"></i>Download PNG
+                    </button>
+                    <button class="dui-btn dui-btn-ghost text-sm" onclick="shareQR()">
+                        <i class="fa-solid fa-link"></i>
+                    </button>
+                </div>
+
+                <div class="flex gap-2">
+                    <button class="dui-btn dui-btn-ghost flex-1 text-sm" onclick="setWifi()">
+                        <i class="fa-solid fa-wifi mr-2"></i>WiFi
+                    </button>
+                    <button class="dui-btn dui-btn-ghost flex-1 text-sm" onclick="setContact()">
+                        <i class="fa-solid fa-address-card mr-2"></i>Contact
+                    </button>
+                    <button class="dui-btn dui-btn-ghost flex-1 text-sm" onclick="setEmail()">
+                        <i class="fa-solid fa-envelope mr-2"></i>Email
+                    </button>
+                </div>
+            </div>
+        </div>
+    
+        <footer class="mt-8 text-center text-xs text-base-content/40 mb-8">
+            <p><a href="/stuff/" class="hover:text-base-content underline">← Back to Stuff Playground</a> &bull; Part of <a href="https://dhanur.me/" class="underline hover:text-base-content">dhanur.me</a></p>
+        </footer>
+    </main>
+
+    <script type="module">
+        import { API } from '../js-shared/api-core.js';
+
+        let qrCode = null;
+
+        window.generate = () => {
+            const content = document.getElementById('content').value;
+            const size = parseInt(document.getElementById('size').value);
+            const level = parseInt(document.getElementById('level').value);
+
+            if (!content) {
+                document.getElementById('qrcode').innerHTML = '';
+                return;
+            }
+
+            const container = document.getElementById('qrcode');
+            container.innerHTML = '';
+
+            qrCode = new QRCode(container, {
+                text: content,
+                width: size,
+                height: size,
+                colorDark: '#000000',
+                colorLight: '#ffffff',
+                correctLevel: level
+            });
+
+            API.setParams({ content, size, level });
+        };
+
+        window.downloadQR = () => {
+            const canvas = document.querySelector('#qrcode canvas');
+            if (!canvas) return;
+
+            const link = document.createElement('a');
+            link.download = 'qrcode.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        };
+
+        window.shareQR = () => {
+            const content = document.getElementById('content').value;
+            if (content) {
+                const url = API.share({ content });
+                API.copy(url);
+                API.toast('Share link copied!');
+            }
+        };
+
+        window.setWifi = () => {
+            const ssid = prompt('WiFi Network Name (SSID):');
+            if (!ssid) return;
+            const password = prompt('Password:');
+            const security = confirm('WPA/WPA2? (OK=WPA, Cancel=No password)') ? 'WPA' : 'nopass';
+
+            const wifiString = `WIFI:S:${ssid};T:${security};P:${password || ''};;`;
+            document.getElementById('content').value = wifiString;
+            generate();
+        };
+
+        window.setContact = () => {
+            const name = prompt('Full Name:');
+            if (!name) return;
+            const phone = prompt('Phone:');
+            const email = prompt('Email:');
+
+            let vCard = `BEGIN:VCARD\nVERSION:3.0\nFN:${name}\n`;
+            if (phone) vCard += `TEL:${phone}\n`;
+            if (email) vCard += `EMAIL:${email}\n`;
+            vCard += 'END:VCARD';
+
+            document.getElementById('content').value = vCard;
+            generate();
+        };
+
+        window.setEmail = () => {
+            const to = prompt('To:');
+            if (!to) return;
+            const subject = prompt('Subject:');
+            const body = prompt('Body:');
+
+            const mailto = `mailto:${to}?subject=${encodeURIComponent(subject || '')}&body=${encodeURIComponent(body || '')}`;
+            document.getElementById('content').value = mailto;
+            generate();
+        };
+
+        // Auto-init
+        API.autoInit((params) => {
+            if (params.content) document.getElementById('content').value = params.content;
+            if (params.size) document.getElementById('size').value = params.size;
+            if (params.level) document.getElementById('level').value = params.level;
+            generate();
+        });
+    </script>
+</body>
+</html>
